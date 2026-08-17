@@ -28,9 +28,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry }) => {
 
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (window.smoothScrollTo) {
+      window.smoothScrollTo(href, true);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

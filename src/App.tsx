@@ -9,6 +9,7 @@ import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { ProjectInquiryForm } from './components/ProjectInquiryForm';
 import { Footer } from './components/Footer';
+import { GSAPScrollSmoother } from './components/GSAPScrollSmoother';
 
 class GlobalErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -45,9 +46,14 @@ class GlobalErrorBoundary extends React.Component<{ children: React.ReactNode },
 
 export function App() {
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    const target = `#${id}`;
+    if (window.smoothScrollTo) {
+      window.smoothScrollTo(target, true);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -65,34 +71,37 @@ export function App() {
           />
         </Suspense>
 
-        {/* Floating Animated Background Blobs */}
-        <AnimatedBackground />
-
-        {/* Sticky Glass Navbar */}
+        {/* Sticky Glass Navbar (Fixed Overlay) */}
         <Navbar onOpenInquiry={() => scrollToSection('contact')} />
 
-        {/* Main Page Layout Flow */}
-        <main className="relative z-10">
-          <Hero
-            onWorkClick={() => scrollToSection('work')}
-            onInquiryClick={() => scrollToSection('contact')}
-          />
+        {/* GSAP Smooth Scroll Wrapper */}
+        <GSAPScrollSmoother>
+          {/* Floating Animated Background Blobs */}
+          <AnimatedBackground />
 
-          <WorkSection onInquiryClick={() => scrollToSection('contact')} />
+          {/* Main Page Layout Flow */}
+          <main className="relative z-10">
+            <Hero
+              onWorkClick={() => scrollToSection('work')}
+              onInquiryClick={() => scrollToSection('contact')}
+            />
 
-          <Services onInquiryClick={() => scrollToSection('contact')} />
+            <WorkSection onInquiryClick={() => scrollToSection('contact')} />
 
-          <Suspense fallback={<div className="min-h-[400px]" />}>
-            <About onInquiryClick={() => scrollToSection('contact')} />
-          </Suspense>
+            <Services onInquiryClick={() => scrollToSection('contact')} />
 
-          <Skills />
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <About onInquiryClick={() => scrollToSection('contact')} />
+            </Suspense>
 
-          <ProjectInquiryForm />
-        </main>
+            <Skills />
 
-        {/* Minimalist Footer */}
-        <Footer />
+            <ProjectInquiryForm />
+          </main>
+
+          {/* Minimalist Footer */}
+          <Footer />
+        </GSAPScrollSmoother>
       </div>
     </GlobalErrorBoundary>
   );

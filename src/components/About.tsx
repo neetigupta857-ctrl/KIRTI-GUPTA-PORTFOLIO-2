@@ -22,6 +22,7 @@ export const About: React.FC<AboutProps> = ({ onInquiryClick }) => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            data-speed="0.95"
             className="lg:col-span-6 relative flex flex-col items-center justify-center min-h-[550px] sm:min-h-[650px] lg:min-h-[780px] w-full"
           >
             {/* Background ambient radial glow */}

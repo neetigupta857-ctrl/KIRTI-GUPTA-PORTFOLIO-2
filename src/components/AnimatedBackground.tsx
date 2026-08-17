@@ -68,6 +68,7 @@ export const AnimatedBackground: React.FC = () => {
       {/* Blob 1: Top-Left to Center floating Emerald Light Leak */}
       <div
         ref={blob1Ref}
+        data-speed="0.4"
         className="absolute top-[-10%] left-[-10%] w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] rounded-full opacity-20 filter blur-[100px] bg-gradient-to-br from-emerald-600/40 via-teal-800/20 to-transparent"
         style={{ willChange: 'transform' }}
       />
@@ -75,6 +76,7 @@ export const AnimatedBackground: React.FC = () => {
       {/* Blob 2: Right Center Dark Mint & Slate Aura */}
       <div
         ref={blob2Ref}
+        data-speed="0.6"
         className="absolute top-[30%] right-[-15%] w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] rounded-full opacity-15 filter blur-[110px] bg-gradient-to-bl from-emerald-500/30 via-slate-800/40 to-transparent"
         style={{ willChange: 'transform' }}
       />
@@ -82,6 +84,7 @@ export const AnimatedBackground: React.FC = () => {
       {/* Blob 3: Bottom Center Deep Subtle Glow */}
       <div
         ref={blob3Ref}
+        data-speed="0.3"
         className="absolute bottom-[-10%] left-[25%] w-[650px] sm:w-[850px] h-[400px] sm:h-[500px] rounded-full opacity-15 filter blur-[120px] bg-gradient-to-tr from-emerald-800/30 via-dark-800 to-transparent"
         style={{ willChange: 'transform' }}
       />
@@ -89,6 +92,7 @@ export const AnimatedBackground: React.FC = () => {
       {/* Subtle White Soft Highlight Specular */}
       <div
         ref={blob4Ref}
+        data-speed="0.5"
         className="absolute top-[15%] left-[45%] w-[300px] h-[300px] rounded-full opacity-5 filter blur-[80px] bg-white"
         style={{ willChange: 'transform, opacity' }}
       />

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Code, CheckCircle, Layers } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
+import { gsap, ScrambleTextPlugin } from '../lib/gsap';
 
 interface HeroProps {
   onWorkClick: () => void;
@@ -8,7 +9,38 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onWorkClick, onInquiryClick }) => {
-  // Overlapping avatar images
+  const roleRef = useRef<HTMLSpanElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+
+  // Roles to scramble between
+  const roles = [
+    'Graphic Designer',
+    'Brand Strategist',
+    'Visual Identity Expert',
+    'Webflow Specialist',
+  ];
+
+  useEffect(() => {
+    // ScrambleText animation loop for role badge
+    if (!roleRef.current) return;
+
+    let roleIndex = 0;
+    const interval = setInterval(() => {
+      roleIndex = (roleIndex + 1) % roles.length;
+      gsap.to(roleRef.current, {
+        duration: 1.2,
+        scrambleText: {
+          text: roles[roleIndex],
+          chars: 'upperAndLowerCase',
+          revealDelay: 0.2,
+          speed: 0.4,
+        },
+      });
+    }, 3800);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const clientAvatars = [
     'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
     'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
@@ -21,30 +53,35 @@ export const Hero: React.FC<HeroProps> = ({ onWorkClick, onInquiryClick }) => {
       id="hero"
       className="relative min-h-screen flex flex-col justify-center items-center pt-28 pb-16 px-4 sm:px-6 overflow-hidden select-none"
     >
-      <div className="max-w-4xl mx-auto text-center flex flex-col items-center z-10">
+      <div className="max-w-4xl mx-auto text-center flex flex-col items-center z-10" data-speed="0.95">
         
-        {/* TOP STATUS PILL TAG */}
+        {/* TOP STATUS PILL TAG WITH GSAP SCRAMBLE TEXT */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-md mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-md mb-8"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span className="text-xs font-semibold uppercase tracking-wider text-emerald-300">
+          <span
+            ref={roleRef}
+            className="text-xs font-semibold uppercase tracking-wider text-emerald-300 min-w-[150px] inline-block"
+          >
             Graphic Designer
           </span>
         </motion.div>
 
-        {/* MAIN HEADLINE */}
+        {/* MAIN HEADLINE WITH PARALLAX & GLOW */}
         <motion.h1
+          ref={headlineRef}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-bold tracking-tight text-white leading-tight sm:leading-tighter mb-6 text-balance"
+          data-speed="1.05"
         >
           Strategic Visuals <br />
           <span className="bg-gradient-to-r from-white via-slate-200 to-emerald-400 bg-clip-text text-transparent">
@@ -58,6 +95,7 @@ export const Hero: React.FC<HeroProps> = ({ onWorkClick, onInquiryClick }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="text-base sm:text-lg md:text-xl text-offwhite-muted max-w-2xl font-normal leading-relaxed mb-10 text-balance"
+          data-speed="0.9"
         >
           Translating your vision into impactful realities
         </motion.p>
@@ -83,7 +121,6 @@ export const Hero: React.FC<HeroProps> = ({ onWorkClick, onInquiryClick }) => {
             onClick={onWorkClick}
             className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full font-medium text-sm text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5"
           >
-            {/* Custom Webflow W icon */}
             <svg
               className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform"
               viewBox="0 0 24 24"
@@ -101,8 +138,8 @@ export const Hero: React.FC<HeroProps> = ({ onWorkClick, onInquiryClick }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.02] border border-white/10 backdrop-blur-lg"
+          data-speed="0.85"
         >
-          {/* Overlapping client avatars */}
           <div className="flex items-center -space-x-2.5">
             {clientAvatars.map((url, i) => (
               <img
@@ -128,3 +165,5 @@ export const Hero: React.FC<HeroProps> = ({ onWorkClick, onInquiryClick }) => {
     </section>
   );
 };
+
+export default Hero;
