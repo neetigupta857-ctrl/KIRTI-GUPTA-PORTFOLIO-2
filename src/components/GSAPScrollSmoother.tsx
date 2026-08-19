@@ -23,15 +23,9 @@ export const GSAPScrollSmoother: React.FC<GSAPScrollSmootherProps> = ({ children
       smoother = ScrollSmoother.create({
         wrapper: '#smooth-wrapper',
         content: '#smooth-content',
-<<<<<<< HEAD
         smooth: 0.8,
         effects: true,
         smoothTouch: false,
-=======
-        smooth: 1.4,
-        effects: true,
-        smoothTouch: 0.1,
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
         normalizeScroll: false,
         ignoreMobileResize: true,
       });
@@ -95,11 +89,7 @@ export const GSAPScrollSmoother: React.FC<GSAPScrollSmootherProps> = ({ children
 
       {/* Smooth Wrapper & Content Structure Required by GSAP ScrollSmoother */}
       <div id="smooth-wrapper" className="w-full overflow-hidden min-h-screen">
-<<<<<<< HEAD
         <div id="smooth-content" className="w-full min-h-screen">
-=======
-        <div id="smooth-content" className="w-full min-h-screen will-change-transform">
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
           {children}
         </div>
       </div>

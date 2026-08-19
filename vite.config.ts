@@ -23,13 +23,9 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-<<<<<<< HEAD
     open: false,
     watch: {
       ignored: ['**/dist/**'],
     },
-=======
-    open: true,
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
   },
 });

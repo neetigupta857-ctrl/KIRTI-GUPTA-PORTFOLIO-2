@@ -14,7 +14,6 @@ import './Lanyard.css';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
-<<<<<<< HEAD
 // Deferred asset preloading to prevent blocking main thread & initial bundle
 let isLanyardPreloaded = false;
 const preloadLanyardAssets = () => {
@@ -27,15 +26,6 @@ const preloadLanyardAssets = () => {
     // Ignore preloader warnings
   }
 };
-=======
-// Preload assets to avoid runtime frame drops
-try {
-  useGLTF.preload(cardGLB);
-  useTexture.preload(lanyard);
-} catch (e) {
-  console.warn('Lanyard assets preloading:', e);
-}
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 
 // 1x1 transparent pixel fallback
 const BLANK_PIXEL =
@@ -56,12 +46,8 @@ export interface LanyardProps {
   lanyardWidth?: number;
 }
 
-<<<<<<< HEAD
 import { LanyardCardFallback } from './LanyardCardFallback';
 export { LanyardCardFallback };
-
-=======
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 // Self-contained Error Boundary so WebGL or Rapier failures NEVER crash the site
 class LanyardErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -79,27 +65,7 @@ class LanyardErrorBoundary extends Component<{ children: React.ReactNode }, { ha
 
   render() {
     if (this.state.hasError) {
-<<<<<<< HEAD
       return <LanyardCardFallback />;
-=======
-      return (
-        <div className="w-full h-[450px] flex items-center justify-center p-4">
-          <div className="relative w-64 h-80 rounded-2xl bg-[#0D0F0F] border border-emerald-500/30 p-4 shadow-2xl flex flex-col items-center justify-between text-center overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600" />
-            <span className="text-[10px] font-bold text-emerald-400 tracking-widest uppercase mt-2">
-              GRAPHIC DESIGNER
-            </span>
-            <div className="w-36 h-44 rounded-xl overflow-hidden border border-white/10 shadow-md my-2">
-              <img src={kirtiPhoto} alt="Kirti Gupta" className="w-full h-full object-cover" />
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-white tracking-tight">KIRTI GUPTA</h3>
-              <p className="text-xs text-slate-400">Brand Architect & Designer</p>
-            </div>
-          </div>
-        </div>
-      );
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     }
     return this.props.children;
   }
@@ -117,11 +83,8 @@ export function Lanyard({
   lanyardWidth = 1.2
 }: LanyardProps) {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
-<<<<<<< HEAD
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-=======
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -129,7 +92,6 @@ export function Lanyard({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (!containerRef.current || typeof IntersectionObserver === 'undefined') {
       preloadLanyardAssets();
@@ -190,67 +152,6 @@ export function Lanyard({
         ) : (
           <LanyardCardFallback />
         )}
-=======
-  return (
-    <LanyardErrorBoundary>
-      <div className="lanyard-wrapper">
-        <Suspense
-          fallback={
-            <div className="w-full h-full flex items-center justify-center p-4">
-              <div className="w-48 h-64 rounded-2xl bg-white/5 border border-white/10 animate-pulse" />
-            </div>
-          }
-        >
-          <Canvas
-            camera={{ position: position, fov: fov }}
-            dpr={[1, isMobile ? 1.5 : 2]}
-            gl={{ alpha: transparent, antialias: true }}
-            onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
-          >
-            <ambientLight intensity={Math.PI} />
-            <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-              <Band
-                isMobile={isMobile}
-                frontImage={frontImage}
-                backImage={backImage}
-                imageFit={imageFit}
-                lanyardImage={lanyardImage}
-                lanyardWidth={lanyardWidth}
-              />
-            </Physics>
-            <Environment blur={0.75}>
-              <Lightformer
-                intensity={2}
-                color="white"
-                position={[0, -1, 5]}
-                rotation={[0, 0, Math.PI / 3]}
-                scale={[100, 0.1, 1]}
-              />
-              <Lightformer
-                intensity={3}
-                color="white"
-                position={[-1, -1, 1]}
-                rotation={[0, 0, Math.PI / 3]}
-                scale={[100, 0.1, 1]}
-              />
-              <Lightformer
-                intensity={3}
-                color="white"
-                position={[1, 1, 1]}
-                rotation={[0, 0, Math.PI / 3]}
-                scale={[100, 0.1, 1]}
-              />
-              <Lightformer
-                intensity={10}
-                color="#10B981"
-                position={[-10, 0, 14]}
-                rotation={[0, Math.PI / 2, Math.PI / 3]}
-                scale={[100, 10, 1]}
-              />
-            </Environment>
-          </Canvas>
-        </Suspense>
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       </div>
     </LanyardErrorBoundary>
   );
@@ -289,7 +190,6 @@ function Band({
   const rot = useMemo(() => new THREE.Vector3(), []);
   const dir = useMemo(() => new THREE.Vector3(), []);
 
-<<<<<<< HEAD
   const POINT_COUNT = isMobile ? 12 : 20;
   const curvePoints = useMemo(
     () => Array.from({ length: POINT_COUNT }, () => new THREE.Vector3()),
@@ -297,9 +197,6 @@ function Band({
   );
 
   const segmentProps: any = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 6, linearDamping: 6 };
-=======
-  const segmentProps: any = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 
   const gltf = useGLTF(cardGLB) as any;
   const nodes = gltf?.nodes || {};
@@ -309,7 +206,6 @@ function Band({
   const frontTex = useTexture(frontImage || BLANK_PIXEL);
   const backTex = useTexture(backImage || BLANK_PIXEL);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (texture) {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -323,24 +219,12 @@ function Band({
     const baseImg = baseMap.image;
     const W = baseImg?.width || 1024;
     const H = baseImg?.height || 1024;
-=======
-  const cardMap = useMemo(() => {
-    const baseMap = materials?.base?.map;
-    if (!baseMap || (!frontImage && !backImage)) return baseMap;
-
-    const baseImg = baseMap.image;
-    if (!baseImg) return baseMap;
-
-    const W = baseImg.width || 512;
-    const H = baseImg.height || 512;
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     const canvas = document.createElement('canvas');
     canvas.width = W;
     canvas.height = H;
     const ctx = canvas.getContext('2d');
     if (!ctx) return baseMap;
 
-<<<<<<< HEAD
     if (baseImg) {
       ctx.drawImage(baseImg, 0, 0, W, H);
     } else {
@@ -384,9 +268,6 @@ function Band({
     ctx.fillRect(rx + rw * 0.25, ry + rh * 0.70, rw * 0.5, 2);
 
     ctx.restore();
-=======
-    ctx.drawImage(baseImg, 0, 0, W, H);
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 
     const drawFitted = (img: HTMLImageElement, rect: { x: number; y: number; w: number; h: number }) => {
       if (!img || !img.width || !img.height) return;
@@ -414,28 +295,16 @@ function Band({
     const composite = new THREE.CanvasTexture(canvas);
     composite.colorSpace = THREE.SRGBColorSpace;
     composite.flipY = baseMap.flipY;
-<<<<<<< HEAD
     composite.anisotropy = 4;
-=======
-    composite.anisotropy = 16;
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     composite.needsUpdate = true;
     return composite;
   }, [frontImage, backImage, imageFit, frontTex, backTex, materials]);
 
-<<<<<<< HEAD
   const [curve] = useState(() => {
     const c = new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]);
     c.curveType = 'chordal';
     return c;
   });
-
-=======
-  const [curve] = useState(
-    () =>
-      new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
-  );
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
   const [dragged, drag] = useState<any>(false);
   const [hovered, hover] = useState<boolean>(false);
 
@@ -498,12 +367,8 @@ function Band({
         curve.points[1].copy(j2.current.lerped);
         curve.points[2].copy(j1.current.lerped);
         curve.points[3].copy(tfixed);
-<<<<<<< HEAD
         const pts = curve.getPoints(POINT_COUNT - 1);
         band.current.geometry.setPoints?.(pts);
-=======
-        band.current.geometry.setPoints?.(curve.getPoints(isMobile ? 16 : 32));
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       }
 
       if (cardAngvel && cardRot && card.current.setAngvel) {
@@ -514,14 +379,7 @@ function Band({
     }
   });
 
-<<<<<<< HEAD
-=======
-  curve.curveType = 'chordal';
-  if (texture) {
-    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  }
 
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
   return (
     <>
       <group position={[0, 4, 0]}>
@@ -555,20 +413,10 @@ function Band({
           >
             {nodes?.card?.geometry ? (
               <mesh geometry={nodes.card.geometry}>
-<<<<<<< HEAD
                 <meshStandardMaterial
                   map={cardMap}
                   roughness={0.45}
                   metalness={0.3}
-=======
-                <meshPhysicalMaterial
-                  map={cardMap}
-                  map-anisotropy={16}
-                  clearcoat={isMobile ? 0 : 1}
-                  clearcoatRoughness={0.15}
-                  roughness={0.9}
-                  metalness={0.8}
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
                 />
               </mesh>
             ) : (

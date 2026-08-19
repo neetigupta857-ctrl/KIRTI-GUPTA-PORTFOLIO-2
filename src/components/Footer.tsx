@@ -32,16 +32,9 @@ export const Footer: React.FC = () => {
   ];
 
   const socialLinks = [
-<<<<<<< HEAD
     { label: 'LinkedIn', value: 'Professional Profile', href: 'https://www.linkedin.com/in/kirti-gupta-45495b1ab?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
     { label: 'Phone & WhatsApp', value: '+91 82186 86983', href: 'https://wa.me/918218686983' },
     { label: 'Email Address', value: 'ikirti.designs@gmail.com', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=ikirti.designs@gmail.com' },
-=======
-    { label: 'Dribbble', href: 'https://dribbble.com' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/kirti-gupta-45495b1ab?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
-    { label: 'Instagram', href: 'https://instagram.com' },
-    { label: 'Behance', href: 'https://behance.net' },
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
   ];
 
   return (
@@ -92,28 +85,18 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-<<<<<<< HEAD
           {/* CONNECT & REACH (4 cols) */}
           <div className="md:col-span-4">
             <span className="text-xs font-semibold uppercase tracking-wider text-offwhite-subtle block mb-4">
               Contact & Connect
             </span>
             <div className="flex flex-col gap-2.5">
-=======
-          {/* SOCIAL LINKS (4 cols) */}
-          <div className="md:col-span-4">
-            <span className="text-xs font-semibold uppercase tracking-wider text-offwhite-subtle block mb-4">
-              Connect & Follow
-            </span>
-            <div className="grid grid-cols-2 gap-3">
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
               {socialLinks.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-<<<<<<< HEAD
                   className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-offwhite-muted hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group"
                 >
                   <div className="flex flex-col">
@@ -121,12 +104,6 @@ export const Footer: React.FC = () => {
                     <span className="text-[11px] text-offwhite-subtle font-mono mt-0.5">{item.value}</span>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
-=======
-                  className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-offwhite-muted hover:text-white hover:border-white/15 transition-all group"
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
                 </a>
               ))}
             </div>

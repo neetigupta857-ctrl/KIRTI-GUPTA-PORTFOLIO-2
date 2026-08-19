@@ -14,27 +14,11 @@ export const ProjectInquiryForm: React.FC = () => {
 
   const contactLinks = [
     {
-<<<<<<< HEAD
       id: 'email',
       heading: 'Email Address',
       label: 'Inquiries & Proposals',
       value: 'ikirti.designs@gmail.com',
       href: 'https://mail.google.com/mail/?view=cm&fs=1&to=ikirti.designs@gmail.com',
-=======
-      id: 'phone',
-      heading: 'Phone & WhatsApp',
-      label: 'Direct Line / Instant Chat',
-      value: '+91 98765 43210',
-      href: 'tel:+919876543210',
-      icon: <Phone className="w-5 h-5 text-emerald-400" />,
-    },
-    {
-      id: 'email',
-      heading: 'Email Address',
-      label: 'Inquiries & Proposals',
-      value: 'kirtigupta.design@gmail.com',
-      href: 'mailto:kirtigupta.design@gmail.com',
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       icon: <Mail className="w-5 h-5 text-emerald-400" />,
     },
     {
@@ -46,21 +30,12 @@ export const ProjectInquiryForm: React.FC = () => {
       icon: <Linkedin className="w-5 h-5 text-emerald-400" />,
     },
     {
-<<<<<<< HEAD
       id: 'phone',
       heading: 'Phone & WhatsApp',
       label: 'Instant WhatsApp Chat',
       value: '+91 82186 86983',
       href: 'https://wa.me/918218686983',
       icon: <Phone className="w-5 h-5 text-emerald-400" />,
-=======
-      id: 'behance',
-      heading: 'Behance Portfolio',
-      label: 'Curated Design Showcase',
-      value: 'behance.net/kirtigupta',
-      href: 'https://behance.net',
-      icon: <Globe className="w-5 h-5 text-emerald-400" />,
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     },
   ];
 
@@ -121,16 +96,12 @@ export const ProjectInquiryForm: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {contactLinks.map((item) => (
-<<<<<<< HEAD
             <div
               key={item.id}
               className={`flex flex-col gap-2.5 ${
                 item.id === 'phone' ? 'md:col-span-2 md:max-w-md md:mx-auto w-full' : ''
               }`}
             >
-=======
-            <div key={item.id} className="flex flex-col gap-2.5">
->>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
               {/* Headings */}
               <div className="flex items-center gap-2 px-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
