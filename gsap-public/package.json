@@ -1,0 +1,23 @@
+{
+  "name": "gsap",
+  "version": "3.15.0",
+  "description": "GreenSock Animation Platform with Bonus Plugins",
+  "main": "umd/gsap.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./umd/gsap.js",
+      "types": "./types/index.d.ts",
+      "default": "./esm/index.js"
+    },
+    "./*": {
+      "import": "./esm/*.js",
+      "require": "./umd/*.js",
+      "types": "./types/*.d.ts",
+      "default": "./esm/*.js"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+declare module 'gsap';
+declare module 'gsap/ScrollTrigger';
+declare module 'gsap/ScrollSmoother';
+declare module 'gsap/SplitText';
+declare module 'gsap/CustomEase';
+declare module 'gsap/ScrambleTextPlugin';
+declare module 'gsap/ScrollToPlugin';
+declare module 'gsap/TextPlugin';
+declare module 'gsap/DrawSVGPlugin';
+declare module 'gsap/InertiaPlugin';
