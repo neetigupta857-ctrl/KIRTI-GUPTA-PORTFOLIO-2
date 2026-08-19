@@ -463,7 +463,7 @@ class App {
   onTouchMove(e) {
     const x = e.touches ? e.touches[0].clientX : e.clientX;
     const y = e.touches ? e.touches[0].clientY : e.clientY;
-    
+
     if (this.container && this.medias && this.medias.length && this.viewport) {
       const rect = this.container.getBoundingClientRect();
       const clickRatio = ((x - rect.left) / rect.width) * 2 - 1;
@@ -649,32 +649,63 @@ export default function CircularGallery({
   onHoverItem
 }) {
   const containerRef = useRef(null);
+
   useEffect(() => {
     if (!containerRef.current) return;
+
     let app;
     let observer;
-    if (typeof IntersectionObserver !== 'undefined') {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (!entry.isIntersecting) {
-            if (app) app.isPaused = true;
-          } else {
-            if (app && app.isPaused) {
-              app.isPaused = false;
-              app.update();
+
+    try {
+      app = new App(containerRef.current, {
+        items,
+        bend,
+        textColor,
+        borderRadius,
+        font,
+        fontUrl,
+        scrollSpeed,
+        scrollEase,
+        onItemClick
+      });
+
+      if (typeof IntersectionObserver !== 'undefined') {
+        observer = new IntersectionObserver(
+          ([entry]) => {
+            if (!entry.isIntersecting) {
+              if (app) app.isPaused = true;
+            } else {
+              if (app && app.isPaused) {
+                app.isPaused = false;
+                app.update();
+              }
             }
-          }
-        },
-        { threshold: 0.05 }
-      );
-      observer.observe(containerRef.current);
+          },
+          { threshold: 0.05 }
+        );
+
+        observer.observe(containerRef.current);
+      }
+    } catch (error) {
+      console.error('CircularGallery initialization failed:', error);
     }
 
     return () => {
       if (observer) observer.disconnect();
       if (app) app.destroy();
     };
-  }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, onItemClick, onHoverItem]);
+  }, [
+    items,
+    bend,
+    textColor,
+    borderRadius,
+    font,
+    fontUrl,
+    scrollSpeed,
+    scrollEase,
+    onItemClick
+  ]);
+
   return (
     <div
       className="circular-gallery"
