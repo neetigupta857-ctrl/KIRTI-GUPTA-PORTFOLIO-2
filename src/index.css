@@ -88,6 +88,7 @@
     scroll-behavior: auto !important;
   }
 }
+<<<<<<< HEAD
 
 /* Custom Emerald Blinking Eyes Preloader Animation */
 .loader {
@@ -120,3 +121,5 @@
     background-size: 100% 40%, 10px 10px;
   }
 }
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f

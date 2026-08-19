@@ -1,12 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Quote, Award, Sparkle, Sparkles } from 'lucide-react';
+<<<<<<< HEAD
 import { LanyardCardFallback } from './LanyardCardFallback';
 import { Magnet } from './Magnet';
 import kirtiPhoto from '../assets/kirti-gupta.jpg';
 
 const Lanyard = React.lazy(() => import('./Lanyard'));
 
+=======
+import { Lanyard } from './Lanyard';
+import { Magnet } from './Magnet';
+import kirtiPhoto from '../assets/kirti-gupta.jpg';
+
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 interface AboutProps {
   onInquiryClick: () => void;
 }
@@ -38,9 +45,13 @@ export const About: React.FC<AboutProps> = ({ onInquiryClick }) => {
 
             {/* 3D Physics Lanyard Component */}
             <div className="w-full h-full flex items-center justify-center relative">
+<<<<<<< HEAD
               <React.Suspense fallback={<LanyardCardFallback />}>
                 <Lanyard position={[0, 0, 13]} gravity={[0, -40, 0]} frontImage={kirtiPhoto} fov={24} lanyardWidth={1.2} />
               </React.Suspense>
+=======
+              <Lanyard position={[0, 0, 13]} gravity={[0, -40, 0]} frontImage={kirtiPhoto} fov={24} lanyardWidth={1.2} />
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
             </div>
           </motion.div>
 

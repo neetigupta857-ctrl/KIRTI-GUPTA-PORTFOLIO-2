@@ -1,5 +1,8 @@
 import React, { Suspense } from 'react';
+<<<<<<< HEAD
 import { Preloader } from './components/Preloader';
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 import { AnimatedBackground } from './components/AnimatedBackground';
 import { SplashCursor } from './components/SplashCursor';
 import { Navbar } from './components/Navbar';
@@ -60,6 +63,7 @@ export function App() {
 
   return (
     <GlobalErrorBoundary>
+<<<<<<< HEAD
       {/* Initial Monospace Emerald Animated Preloader */}
       <Preloader />
 
@@ -71,6 +75,16 @@ export function App() {
             DYE_RESOLUTION={256}
             PRESSURE_ITERATIONS={2}
             SPLAT_RADIUS={0.12}
+=======
+      <div className="relative min-h-screen bg-[#080909] text-[#F3F5F5] font-sans selection:bg-emerald-500 selection:text-black overflow-x-hidden">
+        {/* High-Performance Fluid Splash Cursor */}
+        <Suspense fallback={null}>
+          <SplashCursor
+            SIM_RESOLUTION={64}
+            DYE_RESOLUTION={512}
+            PRESSURE_ITERATIONS={8}
+            SPLAT_RADIUS={0.15}
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
             COLOR="#10B981"
           />
         </Suspense>

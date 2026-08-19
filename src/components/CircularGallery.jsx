@@ -397,7 +397,11 @@ class App {
     this.renderer = new Renderer({
       alpha: true,
       antialias: true,
+<<<<<<< HEAD
       dpr: Math.min(window.devicePixelRatio || 1, 1.5)
+=======
+      dpr: Math.min(window.devicePixelRatio || 1, 2)
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
@@ -583,7 +587,10 @@ class App {
     }
   }
   update() {
+<<<<<<< HEAD
     if (this.isPaused) return;
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) {
@@ -615,7 +622,10 @@ class App {
     }
   }
   destroy() {
+<<<<<<< HEAD
     this.isPaused = true;
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     window.cancelAnimationFrame(this.raf);
     window.removeEventListener('resize', this.boundOnResize);
 
@@ -652,7 +662,13 @@ export default function CircularGallery({
   useEffect(() => {
     if (!containerRef.current) return;
     let app;
+<<<<<<< HEAD
 
+=======
+    let isMounted = true;
+
+    // Instant synchronous mount for responsive loading
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
     app = new App(containerRef.current, {
       items,
       bend,
@@ -669,6 +685,7 @@ export default function CircularGallery({
       resolveFont(font, fontUrl).catch(() => {});
     }
 
+<<<<<<< HEAD
     let observer;
     if (typeof IntersectionObserver !== 'undefined') {
       observer = new IntersectionObserver(
@@ -693,6 +710,13 @@ export default function CircularGallery({
     };
   }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, onItemClick, onHoverItem]);
 
+=======
+    return () => {
+      isMounted = false;
+      if (app) app.destroy();
+    };
+  }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, onItemClick, onHoverItem]);
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
   return (
     <div
       className="circular-gallery"

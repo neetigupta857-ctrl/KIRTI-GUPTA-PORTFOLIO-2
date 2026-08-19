@@ -818,15 +818,19 @@ export const SplashCursor: React.FC<SplashCursorProps> = ({
     initFramebuffers();
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
+<<<<<<< HEAD
     let idleCounter = 0;
 
     function resetIdle() {
       idleCounter = 0;
     }
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
 
     function updateFrame() {
       if (!isActive) return;
       const dt = calcDeltaTime();
+<<<<<<< HEAD
 
       let pointerMoved = pointers.some((p) => p.moved || p.down);
       if (pointerMoved) {
@@ -844,6 +848,13 @@ export const SplashCursor: React.FC<SplashCursorProps> = ({
         render(null);
       }
 
+=======
+      if (resizeCanvas()) initFramebuffers();
+      updateColors(dt);
+      applyInputs();
+      step(dt);
+      render(null);
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       animationFrameId.current = requestAnimationFrame(updateFrame);
     }
 
@@ -1185,7 +1196,10 @@ export const SplashCursor: React.FC<SplashCursorProps> = ({
     }
 
     function handleMouseDown(e: MouseEvent) {
+<<<<<<< HEAD
       resetIdle();
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
@@ -1195,7 +1209,10 @@ export const SplashCursor: React.FC<SplashCursorProps> = ({
 
     let firstMouseMoveHandled = false;
     function handleMouseMove(e: MouseEvent) {
+<<<<<<< HEAD
       resetIdle();
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
@@ -1209,7 +1226,10 @@ export const SplashCursor: React.FC<SplashCursorProps> = ({
     }
 
     function handleTouchStart(e: TouchEvent) {
+<<<<<<< HEAD
       resetIdle();
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       const touches = e.targetTouches;
       let pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
@@ -1220,7 +1240,10 @@ export const SplashCursor: React.FC<SplashCursorProps> = ({
     }
 
     function handleTouchMove(e: TouchEvent) {
+<<<<<<< HEAD
       resetIdle();
+=======
+>>>>>>> f4f723a5b490c19d70546f7355917f4bae26902f
       const touches = e.targetTouches;
       let pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
